@@ -1,6 +1,7 @@
 # Bourne shell locktty
 
-trap ‘‘ 1  2  3  18
+#trap ‘‘ 1  2  3  18
+trap "" SIGHUP  SIGINT  SIGQUIT SIGCONT
 
 stty   -echo
 echo   “Enter key:  ”
