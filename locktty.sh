@@ -10,7 +10,12 @@ trap 'exitLocktty' USR1
 checkTime () {
     set -e
     sleep 5m
-    kill -USR1 $$
+    if ps -p $$ > /dev/null
+    then
+        #kill it if still running 
+        kill -USR1 $$ 
+
+    fi
     exit 0 
 }
 stty   -echo
