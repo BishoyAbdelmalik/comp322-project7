@@ -5,7 +5,7 @@ Modify the above locktty script so that the new user has only 3 attempts to rein
 
 For an extra credit, you should add to the script a command that will terminate the connection with the server.
 
-### Locktty Script 
+### Original Locktty Script 
 ---
  ```bash
  # Bourne shell locktty
