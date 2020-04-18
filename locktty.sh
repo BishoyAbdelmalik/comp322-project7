@@ -1,6 +1,5 @@
 # Bourne shell locktty
 
-#trap ‘‘ 1  2  3  18
 trap "" SIGHUP  SIGINT  SIGQUIT SIGCONT
 exitLocktty() {
     stty echo
