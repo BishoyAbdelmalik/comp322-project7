@@ -1,6 +1,6 @@
 # comp322 Project 7
 
-Modify the above locktty script so that the new user has only 3 attempts to reinstate the session, and furthermore, it has to be done within 15 minutes (for testing purposes you should reduce it to 1 - 2 mins, so that you don’t waste time waiting).
+Modify locktty script so that the new user has only 3 attempts to reinstate the session, and furthermore, it has to be done within 15 minutes (for testing purposes you should reduce it to 1 - 2 mins, so that you don’t waste time waiting).
 
 
 For an extra credit, you should add to the script a command that will terminate the connection with the server.
