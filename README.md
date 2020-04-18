@@ -10,7 +10,7 @@ For an extra credit, you should add to the script a command that will terminate 
  ```bash
  # Bourne shell locktty
 
-trap ‘‘ 1  2  3  18
+trap "" 1  2  3  18
 
 stty   -echo
 echo   “Enter key:  ”
