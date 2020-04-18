@@ -30,16 +30,21 @@ if [ "$key_1" == "$key_2" ]
 then
       checkTime &
       tput clear
+      COUNT=0
       while [ "$key_3" != "$key_2" ]
       do
           echo "enter password:  "
           sleep 1 
           read key_3
+          ((COUNT++))
+          if [ "$COUNT" == 3 ]
+          then
+              exitLocktty
+          fi
       done
       echo "tty is now unlocked   "
       tput clear
-      stty echo
-      exit 0
+      exitLocktty
 fi
 if  [ "$key_1" != "$key_2" ]
 then
