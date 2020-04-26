@@ -3,10 +3,14 @@
 trap "" SIGHUP  SIGINT  SIGQUIT SIGCONT
 exitLocktty() {
     stty echo
-    killall -u $USER sshd
     exit 0
 }
-trap 'exitLocktty' USR1
+closeSSH() {
+    killall -u $USER sshd
+    exitLocktty
+
+}
+trap 'closeSSH' USR1
 
 checkTime () {
     set -e
@@ -44,7 +48,7 @@ then
           ((COUNT++))
           if [ "$COUNT" == 3 ]
           then
-              exitLocktty
+              closeSSH
           fi
       done
       echo "tty is now unlocked   "
