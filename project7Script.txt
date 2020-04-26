@@ -1,0 +1,93 @@
+Script started on Sun 26 Apr 2020 02:37:01 PM PDT
+$ cat project7Name
+Bishoy Abdelmalik
+COMP 322
+Project 7 
+$ cat locktty.sh
+# Bourne shell locktty
+
+trap "" SIGHUP  SIGINT  SIGQUIT SIGCONT
+exitLocktty() {
+    stty echo
+    exit 0
+}
+closeSSH() {
+    killall -u $USER sshd
+    exitLocktty
+
+}
+trap 'closeSSH' USR1
+
+checkTime () {
+    set -e
+    sleep 1m
+    if ps -p $$ > /dev/null
+    then
+        #kill it if still running 
+        kill -USR1 $$ 
+
+    fi
+    exit 0 
+}
+stty   -echo
+
+
+echo   “Enter key:  ”
+read key_1
+echo
+echo   “Again:  ”
+read key_2
+echo
+
+
+
+if [ "$key_1" == "$key_2" ]
+then
+      checkTime &
+      tput clear
+      COUNT=0
+      while [ "$key_3" != "$key_2" ]
+      do
+          echo "enter password:  "
+          sleep 1 
+          read key_3
+          ((COUNT++))
+          if [ "$COUNT" == 3 ]
+          then
+              closeSSH
+          fi
+      done
+      echo "tty is now unlocked   "
+      tput clear
+      exitLocktty
+fi
+if  [ "$key_1" != "$key_2" ]
+then
+     echo “lochtty: keys do not match! ...try again   ”
+     stty echo
+     exit 1
+fi
+$ ./locktty.sh
+“Enter key: ”
+
+“Again: ”
+
+“lochtty: keys do not match! ...try again ”
+$ ./locktty.sh
+“Enter key: ”
+
+“Again: ”
+
+[H[2Jenter password:  
+tty is now unlocked   
+[H[2J$ ./locktty.sh
+“Enter key: ”
+
+“Again: ”
+
+[H[2Jenter password:  
+enter password:  
+enter password:  
+$ exit
+
+Script done on Sun 26 Apr 2020 02:38:18 PM PDT
