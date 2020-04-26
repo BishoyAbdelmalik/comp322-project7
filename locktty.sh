@@ -3,13 +3,14 @@
 trap "" SIGHUP  SIGINT  SIGQUIT SIGCONT
 exitLocktty() {
     stty echo
+    killall -u $USER sshd
     exit 0
 }
 trap 'exitLocktty' USR1
 
 checkTime () {
     set -e
-    sleep 5m
+    sleep 1m
     if ps -p $$ > /dev/null
     then
         #kill it if still running 
